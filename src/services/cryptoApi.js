@@ -13,7 +13,10 @@ export const cryptoApi = createApi({
     getCryptos: builder.query({
       query: () => "/coins/markets?vs_currency=usd",
     }),
+    getCoinDetails: builder.query({
+      query: (coinId) => `/coins/${coinId}`,
+    }),
   }),
 });
 
-export const { useGetCryptosQuery } = cryptoApi;
+export const { useGetCryptosQuery, useGetCoinDetailsQuery } = cryptoApi;
