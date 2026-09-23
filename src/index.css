@@ -1,15 +1,51 @@
+/* controls layout for search input and select dropdowns */
+.controls-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+/* styling search input and select elements */
+.controls-container input[type="text"],
+.controls-container select {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background-color: #ffffff;
+  color: #0f172a;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* focus style for input and select */
+.controls-container input[type="text"]:focus,
+.controls-container select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+/* grid list layout for crypto cards */
 .crypto-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-  padding: 20px 0;
+  /* smaller min width to fit more cards per row */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 14px;
+  padding: 10px 0;
 }
+
+/* compact crypto card style */
 .crypto-card {
   border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: 10px;
+  padding: 12px;
   background-color: #ffffff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,14 +57,31 @@
     box-shadow 0.2s ease;
 }
 
+/* hover animation for cards */
 .crypto-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* crypto coin icon size */
 .crypto-card img {
-  margin-bottom: 12px;
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
 }
+
+/* typography inside crypto card */
+.crypto-card h3 {
+  margin: 4px 0;
+  font-size: 15px;
+}
+
+.crypto-card p {
+  margin: 3px 0;
+  font-size: 13px;
+}
+
+/* price change colors */
 .price-positive {
   color: #16a34a;
   font-weight: 600;
@@ -39,12 +92,14 @@
   font-weight: 600;
 }
 
+/* coin details page layout */
 .coin-details-container {
   padding: 20px;
   max-width: 800px;
   margin: 0 auto;
 }
 
+/* back button link */
 .back-link {
   display: inline-block;
   margin-bottom: 20px;
@@ -56,6 +111,8 @@
 .back-link:hover {
   text-decoration: underline;
 }
+
+/* coin details card styling */
 .coin-details-card {
   background-color: #ffffff;
   border: 1px solid #e2e8f0;
@@ -67,7 +124,10 @@
   align-items: center;
   text-align: center;
 }
+
 .coin-details-card img {
+  width: 64px;
+  height: 64px;
   margin-bottom: 16px;
 }
 

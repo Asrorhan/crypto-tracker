@@ -5,8 +5,8 @@ function CoinDetails() {
     const { id } = useParams();
     const { data, isLoading, isError } = useGetCoinDetailsQuery(id);
 
-    if (isLoading) return <h2>Yuklanmoqda...</h2>;
-    if (isError) return <h2>Xatolik yuz berdi!</h2>;
+    if (isLoading) return <h2>Loading..</h2>;
+    if (isError) return <h2>Something went wrong!</h2>;
 
     return (
         <div className='coin-details-containe'>
