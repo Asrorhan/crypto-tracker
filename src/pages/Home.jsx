@@ -11,6 +11,8 @@ function Home() {
     const [viewMode, setViewMode] = useState(() => {
         return localStorage.getItem('viewMode') || 'grid';
     });
+    const [currentPage, setCurrentPage] = useState(1);
+    const [coinsPerPage, setCoinsPerPage] = useState(10);
 
     const handleViewModeChange = (mode) => {
         setViewMode(mode);
@@ -33,6 +35,28 @@ function Home() {
                 }
                 return a[sortBy] < b[sortBy] ? 1 : -1;
             })
+    // Pagination logic
+    const indexOfLastCoin = currentPage * coinsPerPage;
+    const indexOfFirstCoin = indexOfLastCoin - coinsPerPage;
+    const currentCoins = processedCoins?.slice(indexOfFirstCoin, indexOfLastCoin);
+    // --- PAGINATION LOGIC ---
+    const totalPages = Math.ceil((processedCoins?.length || 0) / coinsPerPage);
+
+    const handlePageChange = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
+    const handleNextPage = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage((prev) => prev + 1);
+        }
+    };
+
+    const handlePrevPage = () => {
+        if (currentPage > 1) {
+            setCurrentPage((prev) => prev - 1);
+        }
+    };
     return (
         <div>
             <div className="controls-container">
@@ -72,7 +96,7 @@ function Home() {
 
             {viewMode === "grid" ? (
                 <ol className='crypto-list'>
-                    {processedCoins?.map((coin) => (
+                    {currentCoins?.map((coin) => (
                         <CryptoCard key={coin.id} coin={coin} />
                     ))}
                 </ol>
@@ -88,7 +112,7 @@ function Home() {
                         </tr>
                     </thead>
                     <tbody>
-                        {processedCoins?.map((coin) => (
+                        {currentCoins?.map((coin) => (
                             <tr
                                 key={coin.id}
                                 onClick={() => navigate(`/coin/${coin.id}`)}
@@ -106,7 +130,34 @@ function Home() {
                         ))}
                     </tbody>
                 </table>
+
             )}
+            {/* --- PAGINATION CONTROLS --- */}
+            <div className="pagination-container">
+                <button
+                    onClick={handlePrevPage}
+                    disabled={currentPage === 1}
+                >
+                    Previous
+                </button>
+
+                {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                    <button
+                        key={page}
+                        onClick={() => handlePageChange(page)}
+                        className={currentPage === page ? "active" : ""}
+                    >
+                        {page}
+                    </button>
+                ))}
+
+                <button
+                    onClick={handleNextPage}
+                    disabled={currentPage === totalPages}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     )
 }

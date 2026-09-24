@@ -1,15 +1,20 @@
-import { Link } from "react-router-dom"
+import { Link } from 'react-router-dom';
+
 function CryptoCard({ coin }) {
+    const isPositive = coin.price_change_percentage_24h >= 0;
+
     return (
-        <Link to={`/coin/${coin.id}`} className="crypto-card" >
-            <img src={coin.image} alt={coin.name} width="30" />
-            <h3>{coin.name} ({coin.symbol.toUpperCase()})</h3>
-            <p>Price: {coin.current_price}</p>
-            <p className={coin.price_change_percentage_24h > 0 ? "price-positive" : "price-negative"}>
-                24h: {coin.price_change_percentage_24h}%
-            </p>
-        </Link >
-    )
+        <li className="crypto-card-item">
+            <Link to={`/coin/${coin.id}`} className="crypto-card">
+                <img src={coin.image} alt={coin.name} />
+                <h3>{coin.name} ({coin.symbol?.toUpperCase()})</h3>
+                <p className="price">${coin.current_price?.toLocaleString()}</p>
+                <p className={`change ${isPositive ? 'positive' : 'negative'}`}>
+                    24h: {isPositive ? '+' : ''}{coin.price_change_percentage_24h?.toFixed(2)}%
+                </p>
+            </Link>
+        </li>
+    );
 }
 
-export default CryptoCard
+export default CryptoCard;
