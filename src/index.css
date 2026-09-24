@@ -169,3 +169,89 @@
   color: #ffffff;
   border-color: #2563eb;
 }
+/* Table container and general styles */
+.crypto-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  font-family: sans-serif;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Table header and cell padding */
+.crypto-table th,
+.crypto-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Table header style */
+.crypto-table th {
+  background-color: #f8fafc;
+  color: #64748b;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* Row hover effect */
+.crypto-table tbody tr:hover {
+  background-color: #f1f5f9;
+  transition: background-color 0.2s ease;
+}
+
+/* Coin name and icon alignment */
+.crypto-table td:nth-child(2) {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Coin link style */
+.crypto-table td a {
+  text-decoration: none;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+.crypto-table td a:hover {
+  color: #2563eb;
+}
+
+/* Controls container and toggle buttons */
+.controls-container {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.view-mode-toggle button {
+  padding: 6px 12px;
+  border: 1px solid #cbd5e1;
+  background-color: #fff;
+  cursor: pointer;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.view-mode-toggle button.active {
+  background-color: #2563eb;
+  color: #fff;
+  border-color: #2563eb;
+}
+/* Clickable table row style */
+.crypto-table tr.clickable-row {
+  cursor: pointer;
+}
+
+.crypto-table .coin-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+}
